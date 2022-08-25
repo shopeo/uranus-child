@@ -76,3 +76,19 @@ if ( ! function_exists( 'uranus_child_customize_preview_init' ) ) {
 }
 
 add_action( 'customize_preview_init', 'uranus_child_customize_preview_init' );
+
+if ( ! function_exists( 'uranus_child_rewrite_flush_child' ) ) {
+	function uranus_child_rewrite_flush_child() {
+		flush_rewrite_rules();
+	}
+}
+
+add_action( 'after_switch_theme', 'uranus_child_rewrite_flush_child' );
+
+if ( ! function_exists( 'uranus_child_theme_setup' ) ) {
+	function uranus_child_theme_setup() {
+		load_child_theme_textdomain( 'uranus-child', get_stylesheet_directory() . '/languages' );
+	}
+}
+
+add_action( 'after_setup_theme', 'uranus_child_theme_setup' );
